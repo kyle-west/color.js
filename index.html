@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <script src="../index.js"></script>
+    <style>
+    div.color-block {
+      height: calc(100vw / 5);
+      width: calc(100vw / 5);
+      display: inline-block;
+      background-color: white;
+      transition: background-color 10s ease;
+    }
+    .container {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0;
+    }
+
+    .background {
+      z-index: -1;
+    }
+
+    body {
+      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+    }
+
+    section.container {
+      width: 80%;
+      margin: auto;
+      margin-top: 20vh;
+      text-align: center;
+    }
+
+    section.container h1 {
+      font-size: 9rem;
+    }
+
+    h3.closer {
+      margin-top: -90px;
+      margin-bottom: 90px;
+    }
+
+    a, a:visited, a:hover, a:active {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+    </style>
+    <script>
+      let timeToRender = 0;
+      function newDivWithColor (bg, containerId) {
+        let holder = document.getElementById(containerId);
+        let div = document.createElement('div');
+        div.classList.add('color-block');
+        holder.appendChild(div);
+        setTimeout(() => {
+          div.style.backgroundColor = bg;
+        }, timeToRender)
+        timeToRender += 100;
+      }
+
+      function showLightenedTones (color, container) {
+        newDivWithColor(color, container)
+        newDivWithColor(color.lighten(.2), container)
+        newDivWithColor(color.lighten(.4), container)
+        newDivWithColor(color.lighten(.6), container)
+        newDivWithColor(color.lighten(.8), container)
+      }
+      function showDarkenedTones (color, container) {
+        newDivWithColor(color, container)
+        newDivWithColor(color.darken(.2), container)
+        newDivWithColor(color.darken(.4), container)
+        newDivWithColor(color.darken(.6), container)
+        newDivWithColor(color.darken(.8), container)
+      }
+    </script>
+  </head>
+
+  <body>
+    
+    <div class="background container">
+      <div id="red-lightened"></div>
+      <div id="orange-lightened"></div>
+      <div id="yellow-lightened"></div>
+      <div id="green-lightened"></div>
+      <div id="blue-lightened"></div>
+      <div id="purple-lightened"></div>
+      <div id="red-darkened"></div>
+      <div id="orange-darkened"></div>
+      <div id="yellow-darkened"></div>
+      <div id="green-darkened"></div>
+      <div id="blue-darkened"></div>
+      <div id="purple-darkened"></div>
+    </div>
+    
+    <section class="container">
+      <h1><code>Color.js</code></h1>
+      <h3 class="closer"><code>A simple color library for the web</code></h3>
+      
+      <a href="https://github.com/kyle-west/color.js">
+        <h3>Hosted on GitHub</h3>
+        <img src="./assets/github.png" alt="Fork Me">
+      </a>
+    </section>
+
+    <script>
+      let red = new Color(255, 0, 0);
+      let orange = new Color('#e56e19');
+      let yellow = new Color('#FFFF00');
+      let green = new Color(0, 255, 0);
+      let blue = new Color(0, 0, 255);
+      let purple = new Color('#800080');
+      
+      showLightenedTones(red, 'red-lightened')
+      showLightenedTones(orange, 'orange-lightened')
+      showLightenedTones(yellow, 'yellow-lightened')
+      showLightenedTones(green, 'green-lightened')
+      showLightenedTones(blue, 'blue-lightened')
+      showLightenedTones(purple, 'purple-lightened')
+      
+      showDarkenedTones(red, 'red-darkened')
+      showDarkenedTones(orange, 'orange-darkened')
+      showDarkenedTones(yellow, 'yellow-darkened')
+      showDarkenedTones(green, 'green-darkened')
+      showDarkenedTones(blue, 'blue-darkened')
+      showDarkenedTones(purple, 'purple-darkened')
+    </script>
+  </body>
+</html>
